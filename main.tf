@@ -3,7 +3,7 @@ locals {
 }
 
 data "aws_subnet" "this" {
-  id = var.subnets[0]
+  id = var.client_subnets[0]
 }
 
 resource "aws_security_group" "this" {
@@ -56,10 +56,10 @@ resource "aws_msk_configuration" "this" {
 resource "aws_msk_cluster" "this" {
   cluster_name           = var.cluster_name
   kafka_version          = var.kafka_version
-  number_of_broker_nodes = var.nodes
+  number_of_broker_nodes = var.number_of_nodes
 
   broker_node_group_info {
-    client_subnets  = var.subnets
+    client_subnets  = var.client_subnets
     ebs_volume_size = var.volume_size
     instance_type   = var.instance_type
     security_groups = concat(aws_security_group.this.*.id, var.extra_security_groups)
