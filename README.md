@@ -1,0 +1,85 @@
+# AWS Msk Kafka Cluster
+
+[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/angelabad/terraform-aws-msk-cluster)](https://github.com/angelabad/terraform-aws-msk-cluster/releases)
+[![Msk Kafka Cluster](https://circleci.com/gh/angelabad/terraform-aws-msk-cluster.svg?style=shield)](https://app.circleci.com/pipelines/github/angelabad/terraform-aws-msk-cluster)
+
+Terraform module which creates [Msk Kafka Cluster](https://aws.amazon.com/msk/) on AWS.
+
+These types of resources are supported:
+
+* [Aws Msk Cluster](https://www.terraform.io/docs/providers/aws/r/msk_cluster.html)
+* [Aws Msk Configuration](https://www.terraform.io/docs/providers/aws/r/msk_configuration.html)
+
+## Features
+
+This module create a fully featured [Msk Kafka Cluster](https://aws.amazon.com/msk/) on Aws. You could configure monitoring, encryption, server
+options, etc...
+
+## Usage
+
+```hcl
+module "kafka" {
+  source = "angelabad/msk-cluster"
+
+  cluster_name    = "kafka"
+  instance_type   = "kafka.t3.small"
+  number_of_nodes = 2
+  client_subnets  = ["subnet-0ab97cbe1bd1406c2", "subnet-0d6cbf60360dbac64"]
+  kafka_version   = "2.4.1"
+
+  extra_security_groups = [sg-019fc0f7d26f6c70f]
+
+  prometheus_jmx_exporter  = true
+  prometheus_node_exporter = true
+
+  server_properties = {
+    "auto.create.topics.enable"  = "true"
+    "default.replication.factor" = "2"
+  }
+
+  encryption_in_transit_client_broker = "TLS"
+}
+```
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:-----:|
+| client\_subnets | A list of subnets to connect to in client VPC | `list(string)` | n/a | yes |
+| cluster\_name | Name of the MSK cluster. | `string` | n/a | yes |
+| encryption\_at\_rest\_kms\_key\_arn | You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest. If no key is specified, an AWS managed KMS ('aws/msk' managed service) key will be used for encrypting the data at rest. | `string` | n/a | yes |
+| encryption\_in\_transit\_client\_broker | Encryption setting for data in transit between clients and brokers. Valid values: TLS, TLS\_PLAINTEXT, and PLAINTEXT. Default value is TLS\_PLAINTEXT when encryption\_in\_transit block defined, but TLS when encryption\_in\_transit block omitted. | `string` | `"TLS"` | no |
+| encryption\_in\_transit\_in\_cluster | Whether data communication among broker nodes is encrypted. Default value: true. | `bool` | `true` | no |
+| extra\_security\_groups | A list of extra security groups to associate with the elastic network interfaces to control who can communicate with the cluster. | `list(string)` | `[]` | no |
+| instance\_type | Specify the instance type to use for the kafka brokers. e.g. kafka.m5.large. | `string` | n/a | yes |
+| kafka\_version | Specify the desired Kafka software version. | `string` | n/a | yes |
+| number\_of\_nodes | The desired total number of broker nodes in the kafka cluster. It must be a multiple of the number of specified client subnets. | `number` | n/a | yes |
+| prometheus\_jmx\_exporter | Indicates whether you want to enable or disable the JMX Exporter. | `bool` | `false` | no |
+| prometheus\_node\_exporter | Indicates whether you want to enable or disable the Node Exporter. | `bool` | `false` | no |
+| server\_properties | A map of the contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html). | `map(string)` | `{}` | no |
+| volume\_size | The size in GiB of the EBS volume for the data drive on each broker node. | `number` | `1000` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| arn | Amazon Resource Name (ARN) of the MSK cluster. |
+| bootstrap\_brokers | A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client\_broker encryption in transit is set o PLAINTEXT or TLS\_PLAINTEXT. |
+| bootstrap\_brokers\_tls | A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client\_broker encryption in transit is set to TLS\_PLAINTEXT or TLS. |
+| current\_version | Current version of the MSK Cluster used for updates, e.g. K13V1IB3VIYZZH |
+| default\_security\_group | Msk cluster default security group id. |
+| encryption\_at\_rest\_kms\_key\_arn | The ARN of the KMS key used for encryption at rest of the broker data volumes. |
+| zookeeper\_connect\_string | A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster. |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+**_NOTE:_**  The API does not support deleting MSK configurations.
+
+## Authors
+
+Module managed by [Angel Abad](https://angelabad.me)
+
+## License
+
+Apache 2 Licensed. See LICENSE for full details
