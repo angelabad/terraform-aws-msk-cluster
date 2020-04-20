@@ -27,7 +27,7 @@ module "kafka" {
   client_subnets  = ["subnet-0ab97cbe1bd1406c2", "subnet-0d6cbf60360dbac64"]
   kafka_version   = "2.4.1"
 
-  extra_security_groups = [sg-019fc0f7d26f6c70f]
+  extra_security_groups = ["sg-019fc0f7d26f6c70f"]
 
   prometheus_jmx_exporter  = true
   prometheus_node_exporter = true
