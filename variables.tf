@@ -60,9 +60,9 @@ variable "encryption_at_rest_kms_key_arn" {
 }
 
 variable "encryption_in_transit_client_broker" {
-  description = "Encryption setting for data in transit between clients and brokers. Valid values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is TLS_PLAINTEXT when encryption_in_transit block defined, but TLS when encryption_in_transit block omitted."
+  description = "Encryption setting for data in transit between clients and brokers. Valid values: TLS, TLS_PLAINTEXT, and PLAINTEXT. Default value is TLS_PLAINTEXT."
   type        = string
-  default     = "TLS"
+  default     = "TLS_PLAINTEXT"
 }
 
 variable "encryption_in_transit_in_cluster" {
