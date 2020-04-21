@@ -5,7 +5,6 @@
     - id: terraform_docs
       args:
         - '--args=--with-aggregate-type-defaults'
-        - '--args=--no-providers'
 
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v2.5.0  # Use the ref you want to point at
