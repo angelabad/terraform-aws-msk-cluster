@@ -38,6 +38,11 @@ module "kafka" {
   }
 
   encryption_in_transit_client_broker = "TLS"
+
+  tags = {
+    Owner       = "user"
+    Environment = "dev"
+  }
 }
 ```
 
@@ -58,6 +63,7 @@ module "kafka" {
 | prometheus\_jmx\_exporter | Indicates whether you want to enable or disable the JMX Exporter. | `bool` | `false` | no |
 | prometheus\_node\_exporter | Indicates whether you want to enable or disable the Node Exporter. | `bool` | `false` | no |
 | server\_properties | A map of the contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html). | `map(string)` | `{}` | no |
+| tags | A mapping of tags to assign to the resource. | `map(string)` | n/a | yes |
 | volume\_size | The size in GiB of the EBS volume for the data drive on each broker node. | `number` | `1000` | no |
 
 ## Outputs

@@ -70,3 +70,9 @@ variable "encryption_in_transit_in_cluster" {
   type        = bool
   default     = true
 }
+
+variable "tags" {
+  description = "A mapping of tags to assign to the resource."
+  type        = map(string)
+  default     = null
+}
