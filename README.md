@@ -49,6 +49,13 @@ module "kafka" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | >= 2.51 |
+| random | >= 2.1 |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |

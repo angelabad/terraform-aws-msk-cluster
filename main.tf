@@ -2,6 +2,14 @@ locals {
   server_properties = join("\n", [for k, v in var.server_properties : format("%s = %s", k, v)])
 }
 
+terraform {
+  required_version = ">= 0.12"
+  required_providers {
+    aws    = ">= 2.51"
+    random = ">= 2.1"
+  }
+}
+
 data "aws_subnet" "this" {
   id = var.client_subnets[0]
 }
