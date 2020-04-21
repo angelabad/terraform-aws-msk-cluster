@@ -78,6 +78,8 @@ resource "aws_msk_cluster" "this" {
     }
   }
 
+  enhanced_monitoring = var.enhanced_monitoring
+
   open_monitoring {
     prometheus {
       jmx_exporter {

@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Features
+- Add tags map to msk cluster resource
+
 
 <a name="v0.1.0"></a>
 ## v0.1.0 - 2020-04-20
