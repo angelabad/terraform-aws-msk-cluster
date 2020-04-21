@@ -1,7 +1,11 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v0.2.0"></a>
+## [v0.2.0] - 2020-04-21
 ### Features
+- Add enhanced_monitoring options
 - Add tags map to msk cluster resource
 
 
@@ -13,4 +17,5 @@
 - Initial module commit
 
 
-[Unreleased]: https://github.com/angelabad/terraform-aws-vpc-dns-forwarder/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.1.0...v0.2.0
