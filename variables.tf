@@ -82,3 +82,27 @@ variable "tags" {
   type        = map(string)
   default     = null
 }
+
+variable "s3_logs_bucket" {
+  description = "Name of the S3 bucket to deliver logs to."
+  type        = string
+  default     = null
+}
+
+variable "s3_logs_prefix" {
+  description = "Prefix to append to the folder name."
+  type        = string
+  default     = null
+}
+
+variable "cloudwatch_logs_group" {
+  description = "Name of the Cloudwatch Log Group to deliver logs to."
+  type        = string
+  default     = null
+}
+
+variable "firehose_logs_delivery_stream" {
+  description = "Name of the Kinesis Data Firehose delivery stream to deliver logs to."
+  type        = string
+  default     = null
+}
