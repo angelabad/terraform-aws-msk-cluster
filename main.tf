@@ -1,11 +1,12 @@
 locals {
   server_properties = join("\n", [for k, v in var.server_properties : format("%s = %s", k, v)])
+  enable_logs       = var.s3_logs_bucket != null || var.cloudwatch_logs_group != null || var.firehose_logs_delivery_stream != null ? ["true"] : []
 }
 
 terraform {
   required_version = ">= 0.12"
   required_providers {
-    aws    = ">= 2.51"
+    aws    = ">= 2.55"
     random = ">= 2.1"
   }
 }
@@ -94,6 +95,36 @@ resource "aws_msk_cluster" "this" {
       }
       node_exporter {
         enabled_in_broker = var.prometheus_node_exporter
+      }
+    }
+  }
+
+  dynamic "logging_info" {
+    for_each = local.enable_logs
+    content {
+      broker_logs {
+        dynamic "firehose" {
+          for_each = var.firehose_logs_delivery_stream != null ? ["true"] : []
+          content {
+            enabled         = true
+            delivery_stream = var.firehose_logs_delivery_stream
+          }
+        }
+        dynamic "cloudwatch_logs" {
+          for_each = var.cloudwatch_logs_group != null ? ["true"] : []
+          content {
+            enabled   = true
+            log_group = var.cloudwatch_logs_group
+          }
+        }
+        dynamic "s3" {
+          for_each = var.s3_logs_bucket != null ? ["true"] : []
+          content {
+            enabled = true
+            bucket  = var.s3_logs_bucket
+            prefix  = var.s3_logs_prefix
+          }
+        }
       }
     }
   }
