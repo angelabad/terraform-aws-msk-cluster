@@ -65,6 +65,7 @@ resource "aws_msk_cluster" "this" {
   cluster_name           = var.cluster_name
   kafka_version          = var.kafka_version
   number_of_broker_nodes = var.number_of_nodes
+  enhanced_monitoring    = var.enhanced_monitoring
 
   broker_node_group_info {
     client_subnets  = var.client_subnets
@@ -85,8 +86,6 @@ resource "aws_msk_cluster" "this" {
       in_cluster    = var.encryption_in_transit_in_cluster
     }
   }
-
-  enhanced_monitoring = var.enhanced_monitoring
 
   open_monitoring {
     prometheus {

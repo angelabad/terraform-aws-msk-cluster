@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Features
+- Configure minimum required versions
+
 
 <a name="v0.2.0"></a>
 ## [v0.2.0] - 2020-04-21
