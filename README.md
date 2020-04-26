@@ -31,6 +31,9 @@ module "kafka" {
 
   enhanced_monitoring = "PER_BROKER"
 
+  s3_logs_bucket = aws_s3_bucket.logs.id
+  s3_logs_prefix = "msklogs"
+
   prometheus_jmx_exporter  = true
   prometheus_node_exporter = true
 
