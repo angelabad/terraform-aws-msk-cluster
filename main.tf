@@ -1,6 +1,6 @@
 locals {
   server_properties = join("\n", [for k, v in var.server_properties : format("%s = %s", k, v)])
-  enable_logs       = var.s3_logs_bucket != null || var.cloudwatch_logs_group != null || var.firehose_logs_delivery_stream != null ? ["true"] : []
+  enable_logs       = var.s3_logs_bucket != "" || var.cloudwatch_logs_group != "" || var.firehose_logs_delivery_stream != "" ? ["true"] : []
 }
 
 terraform {
@@ -104,21 +104,21 @@ resource "aws_msk_cluster" "this" {
     content {
       broker_logs {
         dynamic "firehose" {
-          for_each = var.firehose_logs_delivery_stream != null ? ["true"] : []
+          for_each = var.firehose_logs_delivery_stream != "" ? ["true"] : []
           content {
             enabled         = true
             delivery_stream = var.firehose_logs_delivery_stream
           }
         }
         dynamic "cloudwatch_logs" {
-          for_each = var.cloudwatch_logs_group != null ? ["true"] : []
+          for_each = var.cloudwatch_logs_group != "" ? ["true"] : []
           content {
             enabled   = true
             log_group = var.cloudwatch_logs_group
           }
         }
         dynamic "s3" {
-          for_each = var.s3_logs_bucket != null ? ["true"] : []
+          for_each = var.s3_logs_bucket != "" ? ["true"] : []
           content {
             enabled = true
             bucket  = var.s3_logs_bucket

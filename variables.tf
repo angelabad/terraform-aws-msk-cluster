@@ -62,7 +62,7 @@ variable "server_properties" {
 variable "encryption_at_rest_kms_key_arn" {
   description = "You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest. If no key is specified, an AWS managed KMS ('aws/msk' managed service) key will be used for encrypting the data at rest."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "encryption_in_transit_client_broker" {
@@ -80,29 +80,29 @@ variable "encryption_in_transit_in_cluster" {
 variable "tags" {
   description = "A mapping of tags to assign to the resource."
   type        = map(string)
-  default     = null
+  default     = {}
 }
 
 variable "s3_logs_bucket" {
   description = "Name of the S3 bucket to deliver logs to."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "s3_logs_prefix" {
   description = "Prefix to append to the folder name."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "cloudwatch_logs_group" {
   description = "Name of the Cloudwatch Log Group to deliver logs to."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "firehose_logs_delivery_stream" {
   description = "Name of the Kinesis Data Firehose delivery stream to deliver logs to."
   type        = string
-  default     = null
+  default     = ""
 }
