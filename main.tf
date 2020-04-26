@@ -47,6 +47,28 @@ resource "aws_security_group_rule" "zookeeper" {
   self              = true
 }
 
+resource "aws_security_group_rule" "jmx-exporter" {
+  count = var.prometheus_jmx_exporter ? 1 : 0
+
+  from_port         = 11001
+  to_port           = 11001
+  protocol          = "tcp"
+  security_group_id = aws_security_group.this.id
+  type              = "ingress"
+  self              = true
+}
+
+resource "aws_security_group_rule" "node_exporter" {
+  count = var.prometheus_node_exporter ? 1 : 0
+
+  from_port         = 11002
+  to_port           = 11002
+  protocol          = "tcp"
+  security_group_id = aws_security_group.this.id
+  type              = "ingress"
+  self              = true
+}
+
 resource "random_id" "configuration" {
   prefix      = "${var.cluster_name}-"
   byte_length = 8
