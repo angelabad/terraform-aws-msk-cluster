@@ -1,4 +1,12 @@
 
+<a name="v0.3.4"></a>
+## [v0.3.4](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.3...v0.3.4) (2020-11-11)
+
+### Bug Fixes
+
+* Update README example code
+
+
 <a name="v0.3.3"></a>
 ## [v0.3.3](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.2...v0.3.3) (2020-09-12)
 
@@ -52,4 +60,3 @@
 * Add readme file
 * Add descriptions on variables and outputs
 * Initial module commit
-
