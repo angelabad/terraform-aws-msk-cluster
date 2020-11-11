@@ -18,8 +18,8 @@ options, etc...
 ## Usage
 
 ```hcl
-module "kafka" {
-  source = "angelabad/msk-cluster"
+module "msk-cluster" {
+  source  = "angelabad/msk-cluster/aws"
 
   cluster_name    = "kafka"
   instance_type   = "kafka.t3.small"
