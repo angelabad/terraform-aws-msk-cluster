@@ -52,24 +52,47 @@ module "msk-cluster" {
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| aws | >= 3.23 |
+| random | >= 2.1 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.55 |
+| aws | >= 3.23 |
 | random | >= 2.1 |
+
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [aws_msk_cluster](https://registry.terraform.io/providers/hashicorp/aws/3.23/docs/resources/msk_cluster) |
+| [aws_msk_configuration](https://registry.terraform.io/providers/hashicorp/aws/3.23/docs/resources/msk_configuration) |
+| [aws_security_group_rule](https://registry.terraform.io/providers/hashicorp/aws/3.23/docs/resources/security_group_rule) |
+| [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/3.23/docs/resources/security_group) |
+| [aws_subnet](https://registry.terraform.io/providers/hashicorp/aws/3.23/docs/data-sources/subnet) |
+| [random_id](https://registry.terraform.io/providers/hashicorp/random/2.1/docs/resources/id) |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | client\_subnets | A list of subnets to connect to in client VPC | `list(string)` | n/a | yes |
 | cloudwatch\_logs\_group | Name of the Cloudwatch Log Group to deliver logs to. | `string` | `""` | no |
 | cluster\_name | Name of the MSK cluster. | `string` | n/a | yes |
 | encryption\_at\_rest\_kms\_key\_arn | You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest. If no key is specified, an AWS managed KMS ('aws/msk' managed service) key will be used for encrypting the data at rest. | `string` | `""` | no |
 | encryption\_in\_transit\_client\_broker | Encryption setting for data in transit between clients and brokers. Valid values: TLS, TLS\_PLAINTEXT, and PLAINTEXT. Default value is TLS\_PLAINTEXT. | `string` | `"TLS_PLAINTEXT"` | no |
 | encryption\_in\_transit\_in\_cluster | Whether data communication among broker nodes is encrypted. Default value: true. | `bool` | `true` | no |
-| enhanced\_monitoring | Specify the desired enhanced MSK CloudWatch monitoring level to one of three monitoring levels: DEFAULT, PER\_BROKER, or PER\_TOPIC\_PER\_BROKER. See [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html). | `string` | `"DEFAULT"` | no |
+| enhanced\_monitoring | Specify the desired enhanced MSK CloudWatch monitoring level to one of three monitoring levels: DEFAULT, PER\_BROKER, PER\_TOPIC\_PER\_BROKER or PER\_TOPIC\_PER\_PARTITION. See [Monitoring Amazon MSK with Amazon CloudWatch](https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html). | `string` | `"DEFAULT"` | no |
 | extra\_security\_groups | A list of extra security groups to associate with the elastic network interfaces to control who can communicate with the cluster. | `list(string)` | `[]` | no |
 | firehose\_logs\_delivery\_stream | Name of the Kinesis Data Firehose delivery stream to deliver logs to. | `string` | `""` | no |
 | instance\_type | Specify the instance type to use for the kafka brokers. e.g. kafka.m5.large. | `string` | n/a | yes |
@@ -94,7 +117,6 @@ module "msk-cluster" {
 | default\_security\_group | Msk cluster default security group id. |
 | encryption\_at\_rest\_kms\_key\_arn | The ARN of the KMS key used for encryption at rest of the broker data volumes. |
 | zookeeper\_connect\_string | A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 **_NOTE:_**  The API does not support deleting MSK configurations.
