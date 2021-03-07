@@ -1,4 +1,12 @@
 
+<a name="v0.3.5"></a>
+## [v0.3.5](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.4...v0.3.5) (2021-03-07)
+
+### Features
+
+* Support PER_TOPIC_PER_PARTITION value for enhanced_monitoring (thanks [@victorcmoura](https://github.com/victorcmoura))
+
+
 <a name="v0.3.4"></a>
 ## [v0.3.4](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.3...v0.3.4) (2020-11-11)
 
