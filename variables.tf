@@ -106,3 +106,15 @@ variable "firehose_logs_delivery_stream" {
   type        = string
   default     = ""
 }
+
+variable "enable_client_authentication" {
+  description = "Enable client authentication. Default value: false."
+  type        = bool
+  default     = false
+}
+
+variable "certificate_authority_arns" {
+  description = "List of ACM Certificate Authority Amazon Resource Names (ARNS)"
+  type        = list(string)
+  default     = []
+}
