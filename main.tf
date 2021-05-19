@@ -89,6 +89,7 @@ resource "aws_msk_configuration" "this" {
 }
 
 resource "aws_msk_cluster" "this" {
+  depends_on = [aws_msk_configuration.this]
   cluster_name           = var.cluster_name
   kafka_version          = var.kafka_version
   number_of_broker_nodes = var.number_of_nodes
