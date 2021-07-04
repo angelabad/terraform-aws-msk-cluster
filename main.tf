@@ -6,7 +6,7 @@ locals {
 terraform {
   required_version = ">= 0.12"
   required_providers {
-    aws    = ">= 3.23"
+    aws    = ">= 3.39"
     random = ">= 2.1"
   }
 }
