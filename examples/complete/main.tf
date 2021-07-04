@@ -31,7 +31,7 @@ module "complete" {
   instance_type   = "kafka.t3.small"
   number_of_nodes = length(data.aws_subnet_ids.default.ids)
   client_subnets  = data.aws_subnet_ids.default.ids
-  kafka_version   = "2.4.1"
+  kafka_version   = "2.6.2"
   volume_size     = 2000
 
   extra_security_groups = [data.aws_security_group.default.id]

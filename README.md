@@ -25,7 +25,7 @@ module "msk-cluster" {
   instance_type   = "kafka.t3.small"
   number_of_nodes = 2
   client_subnets  = ["subnet-0ab97cbe1bd1406c2", "subnet-0d6cbf60360dbac64"]
-  kafka_version   = "2.4.1"
+  kafka_version   = "2.6.2"
 
   extra_security_groups = ["sg-019fc0f7d26f6c70f"]
 
