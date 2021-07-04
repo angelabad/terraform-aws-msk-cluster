@@ -81,7 +81,7 @@ resource "random_id" "configuration" {
 resource "aws_msk_configuration" "this" {
   kafka_versions    = [var.kafka_version]
   name              = random_id.configuration.dec
-  server_properties = local.server_properties
+  server_properties = random_id.configuration.keepers.server_properties
 
   lifecycle {
     create_before_destroy = true
