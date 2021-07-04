@@ -1,4 +1,18 @@
 
+<a name="v0.4.0"></a>
+## [v0.4.0](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.5...v0.4.0) (2021-07-04)
+
+### Bug Fixes
+
+* Correct usage of random_id keepers
+* Support in-place instance_type updates
+
+### Features
+
+* Update examples kafka versions
+* Require terraform >= 0.15 for new provider versions
+
+
 <a name="v0.3.5"></a>
 ## [v0.3.5](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.4...v0.3.5) (2021-03-07)
 
