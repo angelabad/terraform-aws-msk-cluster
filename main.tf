@@ -125,6 +125,15 @@ resource "aws_msk_cluster" "this" {
     }
   }
 
+  dynamic "client_authentication" {
+    for_each = var.enable_client_authentication != "" ? ["true"] : []
+    content {
+      tls {
+        certificate_authority_arns = var.certificate_authority_arns
+      }
+    }
+  }
+
   dynamic "logging_info" {
     for_each = local.enable_logs
     content {
