@@ -75,6 +75,7 @@ resource "random_id" "configuration" {
 
   keepers = {
     server_properties = local.server_properties
+    kafka_version     = var.kafka_version
   }
 }
 
