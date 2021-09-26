@@ -123,8 +123,6 @@ No modules.
 | <a name="output_zookeeper_connect_string"></a> [zookeeper\_connect\_string](#output\_zookeeper\_connect\_string) | A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-**_NOTE:_**  The API does not support deleting MSK configurations.
-
 ## Authors
 
 Module managed by [Angel Abad](https://angelabad.me)
