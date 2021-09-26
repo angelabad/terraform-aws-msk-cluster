@@ -1,4 +1,12 @@
 
+<a name="v0.4.1"></a>
+## [v0.4.1](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.4.0...v0.4.1) (2021-09-26)
+
+### Bug Fixes
+
+* Support in-place kafka version upgrades (thanks [@bradonkanyid](https://github.com/bradonkanyid))
+
+
 <a name="v0.4.0"></a>
 ## [v0.4.0](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.3.5...v0.4.0) (2021-07-04)
 
