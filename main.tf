@@ -38,7 +38,7 @@ resource "aws_security_group_rule" "msk-tls" {
   self              = true
 }
 
-resource "aws_security_group_rule" "zookeeper" {
+resource "aws_security_group_rule" "zookeeper-plain" {
   from_port         = 2181
   to_port           = 2181
   protocol          = "tcp"
