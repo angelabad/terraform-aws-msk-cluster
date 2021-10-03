@@ -47,6 +47,15 @@ resource "aws_security_group_rule" "zookeeper-plain" {
   self              = true
 }
 
+resource "aws_security_group_rule" "zookeeper-tls" {
+  from_port         = 2182
+  to_port           = 2182
+  protocol          = "tcp"
+  security_group_id = aws_security_group.this.id
+  type              = "ingress"
+  self              = true
+}
+
 resource "aws_security_group_rule" "jmx-exporter" {
   count = var.prometheus_jmx_exporter ? 1 : 0
 
