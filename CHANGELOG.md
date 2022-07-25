@@ -1,4 +1,15 @@
 
+<a name="v0.5.0"></a>
+## [v0.5.0](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.4.2...v0.5.0) (2022-07-25)
+
+### Features
+
+* Update examples code
+* New resources for client_authentication: unauthenticated, iam, scram, tls
+* Add ebs provisioned throughput and use new storage_info argument.
+* Require aws provider >= 4.16
+
+
 <a name="v0.4.2"></a>
 ## [v0.4.2](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.4.1...v0.4.2) (2021-10-03)
 
