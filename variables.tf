@@ -106,3 +106,9 @@ variable "firehose_logs_delivery_stream" {
   type        = string
   default     = ""
 }
+
+variable "provisioned_volume_throughput" {
+  description = "Throughput value of the EBS volumes for the data drive on each kafka broker node in MiB per second. The minimum value is 250. The maximum value varies between broker type. See [https://docs.aws.amazon.com/msk/latest/developerguide/msk-provision-throughput.html#throughput-bottlenecks](documentation on throughput bottlenecks)."
+  type        = number
+  default     = null
+}
