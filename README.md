@@ -57,14 +57,14 @@ module "msk-cluster" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.39 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.16 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.39 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.16 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 2.1 |
 
 ## Modules
@@ -77,6 +77,7 @@ No modules.
 |------|------|
 | [aws_msk_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster) | resource |
 | [aws_msk_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_configuration) | resource |
+| [aws_msk_scram_secret_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_scram_secret_association) | resource |
 | [aws_security_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.jmx-exporter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.msk-plain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
@@ -91,6 +92,10 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_client_authentication_sasl_iam_enabled"></a> [client\_authentication\_sasl\_iam\_enabled](#input\_client\_authentication\_sasl\_iam\_enabled) | Enables IAM client authentication. | `bool` | `false` | no |
+| <a name="input_client_authentication_sasl_scram_secrets_arns"></a> [client\_authentication\_sasl\_scram\_secrets\_arns](#input\_client\_authentication\_sasl\_scram\_secrets\_arns) | Associates SCRAM secrets stored in the Secrets Manager. You need [secret policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_scram_secret_association). | `list(string)` | `[]` | no |
+| <a name="input_client_authentication_tls_certificate_authority_arns"></a> [client\_authentication\_tls\_certificate\_authority\_arns](#input\_client\_authentication\_tls\_certificate\_authority\_arns) | List of ACM Certificate Authority Amazon Resource Names (ARNs). | `list(string)` | `[]` | no |
+| <a name="input_client_authentication_unauthenticated_enabled"></a> [client\_authentication\_unauthenticated\_enabled](#input\_client\_authentication\_unauthenticated\_enabled) | Enables unauthenticated access. | `bool` | `false` | no |
 | <a name="input_client_subnets"></a> [client\_subnets](#input\_client\_subnets) | A list of subnets to connect to in client VPC | `list(string)` | n/a | yes |
 | <a name="input_cloudwatch_logs_group"></a> [cloudwatch\_logs\_group](#input\_cloudwatch\_logs\_group) | Name of the Cloudwatch Log Group to deliver logs to. | `string` | `""` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the MSK cluster. | `string` | n/a | yes |
@@ -105,6 +110,7 @@ No modules.
 | <a name="input_number_of_nodes"></a> [number\_of\_nodes](#input\_number\_of\_nodes) | The desired total number of broker nodes in the kafka cluster. It must be a multiple of the number of specified client subnets. | `number` | n/a | yes |
 | <a name="input_prometheus_jmx_exporter"></a> [prometheus\_jmx\_exporter](#input\_prometheus\_jmx\_exporter) | Indicates whether you want to enable or disable the JMX Exporter. | `bool` | `false` | no |
 | <a name="input_prometheus_node_exporter"></a> [prometheus\_node\_exporter](#input\_prometheus\_node\_exporter) | Indicates whether you want to enable or disable the Node Exporter. | `bool` | `false` | no |
+| <a name="input_provisioned_volume_throughput"></a> [provisioned\_volume\_throughput](#input\_provisioned\_volume\_throughput) | Throughput value of the EBS volumes for the data drive on each kafka broker node in MiB per second. The minimum value is 250. The maximum value varies between broker type. See [https://docs.aws.amazon.com/msk/latest/developerguide/msk-provision-throughput.html#throughput-bottlenecks](documentation on throughput bottlenecks). | `number` | `null` | no |
 | <a name="input_s3_logs_bucket"></a> [s3\_logs\_bucket](#input\_s3\_logs\_bucket) | Name of the S3 bucket to deliver logs to. | `string` | `""` | no |
 | <a name="input_s3_logs_prefix"></a> [s3\_logs\_prefix](#input\_s3\_logs\_prefix) | Prefix to append to the folder name. | `string` | `""` | no |
 | <a name="input_server_properties"></a> [server\_properties](#input\_server\_properties) | A map of the contents of the server.properties file. Supported properties are documented in the [MSK Developer Guide](https://docs.aws.amazon.com/msk/latest/developerguide/msk-configuration-properties.html). | `map(string)` | `{}` | no |

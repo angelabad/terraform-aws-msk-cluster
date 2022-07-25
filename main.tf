@@ -6,7 +6,7 @@ locals {
 terraform {
   required_version = ">= 0.15"
   required_providers {
-    aws    = ">= 3.39"
+    aws    = ">= 4.16"
     random = ">= 2.1"
   }
 }
@@ -98,6 +98,13 @@ resource "aws_msk_configuration" "this" {
   }
 }
 
+resource "aws_msk_scram_secret_association" "this" {
+  count = length(var.client_authentication_sasl_scram_secrets_arns) == 0 ? 0 : 1
+
+  cluster_arn     = aws_msk_cluster.this.arn
+  secret_arn_list = var.client_authentication_sasl_scram_secrets_arns
+}
+
 resource "aws_msk_cluster" "this" {
   depends_on = [aws_msk_configuration.this]
 
@@ -108,14 +115,39 @@ resource "aws_msk_cluster" "this" {
 
   broker_node_group_info {
     client_subnets  = var.client_subnets
-    ebs_volume_size = var.volume_size
     instance_type   = var.instance_type
     security_groups = concat(aws_security_group.this.*.id, var.extra_security_groups)
+
+    storage_info {
+      ebs_storage_info {
+        volume_size = var.volume_size
+
+
+        provisioned_throughput {
+          enabled           = var.provisioned_volume_throughput == null ? false : true
+          volume_throughput = var.provisioned_volume_throughput
+        }
+      }
+    }
   }
 
   configuration_info {
     arn      = aws_msk_configuration.this.arn
     revision = aws_msk_configuration.this.latest_revision
+  }
+
+  client_authentication {
+    unauthenticated = var.client_authentication_unauthenticated_enabled
+    sasl {
+      iam   = var.client_authentication_sasl_iam_enabled
+      scram = length(var.client_authentication_sasl_scram_secrets_arns) == 0 ? false : true
+    }
+    dynamic "tls" {
+      for_each = length(var.client_authentication_tls_certificate_authority_arns) != 0 ? ["true"] : []
+      content {
+        certificate_authority_arns = var.client_authentication_tls_certificate_authority_arns
+      }
+    }
   }
 
   encryption_info {

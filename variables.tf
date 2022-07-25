@@ -106,3 +106,33 @@ variable "firehose_logs_delivery_stream" {
   type        = string
   default     = ""
 }
+
+variable "client_authentication_unauthenticated_enabled" {
+  description = "Enables unauthenticated access."
+  type        = bool
+  default     = false
+}
+
+variable "client_authentication_sasl_iam_enabled" {
+  description = "Enables IAM client authentication."
+  type        = bool
+  default     = false
+}
+
+variable "client_authentication_sasl_scram_secrets_arns" {
+  description = "Associates SCRAM secrets stored in the Secrets Manager. You need [secret policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_scram_secret_association)."
+  type        = list(string)
+  default     = []
+}
+
+variable "client_authentication_tls_certificate_authority_arns" {
+  description = "List of ACM Certificate Authority Amazon Resource Names (ARNs)."
+  type        = list(string)
+  default     = []
+}
+
+variable "provisioned_volume_throughput" {
+  description = "Throughput value of the EBS volumes for the data drive on each kafka broker node in MiB per second. The minimum value is 250. The maximum value varies between broker type. See [https://docs.aws.amazon.com/msk/latest/developerguide/msk-provision-throughput.html#throughput-bottlenecks](documentation on throughput bottlenecks)."
+  type        = number
+  default     = null
+}
