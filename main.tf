@@ -98,6 +98,13 @@ resource "aws_msk_configuration" "this" {
   }
 }
 
+resource "aws_msk_scram_secret_association" "this" {
+  count = length(var.client_authentication_sasl_scram_secrets_arns) == 0 ? 0 : 1
+
+  cluster_arn     = aws_msk_cluster.this.arn
+  secret_arn_list = var.client_authentication_sasl_scram_secrets_arns
+}
+
 resource "aws_msk_cluster" "this" {
   depends_on = [aws_msk_configuration.this]
 
@@ -127,6 +134,20 @@ resource "aws_msk_cluster" "this" {
   configuration_info {
     arn      = aws_msk_configuration.this.arn
     revision = aws_msk_configuration.this.latest_revision
+  }
+
+  client_authentication {
+    unauthenticated = var.client_authentication_unauthenticated_enabled
+    sasl {
+      iam   = var.client_authentication_sasl_iam_enabled
+      scram = length(var.client_authentication_sasl_scram_secrets_arns) == 0 ? false : true
+    }
+    dynamic "tls" {
+      for_each = length(var.client_authentication_tls_certificate_authority_arns) != 0 ? ["true"] : []
+      content {
+        certificate_authority_arns = var.client_authentication_tls_certificate_authority_arns
+      }
+    }
   }
 
   encryption_info {

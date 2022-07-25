@@ -77,6 +77,7 @@ No modules.
 |------|------|
 | [aws_msk_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_cluster) | resource |
 | [aws_msk_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_configuration) | resource |
+| [aws_msk_scram_secret_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_scram_secret_association) | resource |
 | [aws_security_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_security_group_rule.jmx-exporter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_security_group_rule.msk-plain](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
@@ -91,6 +92,10 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_client_authentication_sasl_iam_enabled"></a> [client\_authentication\_sasl\_iam\_enabled](#input\_client\_authentication\_sasl\_iam\_enabled) | Enables IAM client authentication. | `bool` | `false` | no |
+| <a name="input_client_authentication_sasl_scram_secrets_arns"></a> [client\_authentication\_sasl\_scram\_secrets\_arns](#input\_client\_authentication\_sasl\_scram\_secrets\_arns) | Associates SCRAM secrets stored in the Secrets Manager. You need [secret policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/msk_scram_secret_association). | `list(string)` | `[]` | no |
+| <a name="input_client_authentication_tls_certificate_authority_arns"></a> [client\_authentication\_tls\_certificate\_authority\_arns](#input\_client\_authentication\_tls\_certificate\_authority\_arns) | List of ACM Certificate Authority Amazon Resource Names (ARNs). | `list(string)` | `[]` | no |
+| <a name="input_client_authentication_unauthenticated_enabled"></a> [client\_authentication\_unauthenticated\_enabled](#input\_client\_authentication\_unauthenticated\_enabled) | Enables unauthenticated access. | `bool` | `false` | no |
 | <a name="input_client_subnets"></a> [client\_subnets](#input\_client\_subnets) | A list of subnets to connect to in client VPC | `list(string)` | n/a | yes |
 | <a name="input_cloudwatch_logs_group"></a> [cloudwatch\_logs\_group](#input\_cloudwatch\_logs\_group) | Name of the Cloudwatch Log Group to deliver logs to. | `string` | `""` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the MSK cluster. | `string` | n/a | yes |
