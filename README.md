@@ -123,10 +123,13 @@ No modules.
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | Amazon Resource Name (ARN) of the MSK cluster. |
 | <a name="output_bootstrap_brokers"></a> [bootstrap\_brokers](#output\_bootstrap\_brokers) | A comma separated list of one or more hostname:port pairs of kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client\_broker encryption in transit is set o PLAINTEXT or TLS\_PLAINTEXT. |
+| <a name="output_bootstrap_brokers_sasl_iam"></a> [bootstrap\_brokers\_sasl\_iam](#output\_bootstrap\_brokers\_sasl\_iam) | A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client\_broker encryption in transit is set to SASL IAM. |
+| <a name="output_bootstrap_brokers_sasl_scram"></a> [bootstrap\_brokers\_sasl\_scram](#output\_bootstrap\_brokers\_sasl\_scram) | A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client\_broker encryption in transit is set to SASL SCRAM. |
 | <a name="output_bootstrap_brokers_tls"></a> [bootstrap\_brokers\_tls](#output\_bootstrap\_brokers\_tls) | A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client\_broker encryption in transit is set to TLS\_PLAINTEXT or TLS. |
 | <a name="output_current_version"></a> [current\_version](#output\_current\_version) | Current version of the MSK Cluster used for updates, e.g. K13V1IB3VIYZZH |
 | <a name="output_default_security_group"></a> [default\_security\_group](#output\_default\_security\_group) | Msk cluster default security group id. |
 | <a name="output_encryption_at_rest_kms_key_arn"></a> [encryption\_at\_rest\_kms\_key\_arn](#output\_encryption\_at\_rest\_kms\_key\_arn) | The ARN of the KMS key used for encryption at rest of the broker data volumes. |
+| <a name="output_extra_security_groups"></a> [extra\_security\_groups](#output\_extra\_security\_groups) | Msk cluster extra security group ids. |
 | <a name="output_zookeeper_connect_string"></a> [zookeeper\_connect\_string](#output\_zookeeper\_connect\_string) | A comma separated list of one or more hostname:port pairs to use to connect to the Apache Zookeeper cluster. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
