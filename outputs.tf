@@ -25,12 +25,12 @@ output "bootstrap_brokers_tls" {
 
 output "bootstrap_brokers_sasl_scram" {
   description = "A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client_broker encryption in transit is set to SASL SCRAM."
-  value       = aws_msk_cluster.this.bootstrap_brokers_sasl_scram
+  value       = aws_msk_cluster.this.bootstrap_brokers_sasl_scram != "" ? aws_msk_cluster.this.bootstrap_brokers_sasl_scram : null
 }
 
 output "bootstrap_brokers_sasl_iam" {
   description = "A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client_broker encryption in transit is set to SASL IAM."
-  value       = aws_msk_cluster.this.bootstrap_brokers_sasl_iam
+  value       = aws_msk_cluster.this.bootstrap_brokers_sasl_iam != "" ? aws_msk_cluster.this.bootstrap_brokers_sasl_iam : null
 }
 
 output "current_version" {
