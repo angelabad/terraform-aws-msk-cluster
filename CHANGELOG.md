@@ -1,4 +1,12 @@
 
+<a name="v0.5.1"></a>
+## [v0.5.1](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.5.0...v0.5.1) (2023-05-20)
+
+### Bug Fixes
+
+* Add outputs for bootstrap brokers if SASL access is used
+
+
 <a name="v0.5.0"></a>
 ## [v0.5.0](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.4.2...v0.5.0) (2022-07-25)
 
