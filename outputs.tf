@@ -3,6 +3,11 @@ output "default_security_group" {
   value       = aws_security_group.this.id
 }
 
+output "extra_security_groups" {
+  description = "Msk cluster extra security group ids."
+  value       = var.extra_security_groups
+}
+
 output "arn" {
   description = "Amazon Resource Name (ARN) of the MSK cluster."
   value       = aws_msk_cluster.this.arn
@@ -16,6 +21,16 @@ output "bootstrap_brokers" {
 output "bootstrap_brokers_tls" {
   description = "A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client_broker encryption in transit is set to TLS_PLAINTEXT or TLS."
   value       = aws_msk_cluster.this.bootstrap_brokers_tls
+}
+
+output "bootstrap_brokers_sasl_scram" {
+  description = "A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client_broker encryption in transit is set to SASL SCRAM."
+  value       = aws_msk_cluster.this.bootstrap_brokers_sasl_scram != "" ? aws_msk_cluster.this.bootstrap_brokers_sasl_scram : null
+}
+
+output "bootstrap_brokers_sasl_iam" {
+  description = "A comma separated list of one or more DNS names (or IPs) and TLS port pairs kafka brokers suitable to boostrap connectivity to the kafka cluster. Only contains value if client_broker encryption in transit is set to SASL IAM."
+  value       = aws_msk_cluster.this.bootstrap_brokers_sasl_iam != "" ? aws_msk_cluster.this.bootstrap_brokers_sasl_iam : null
 }
 
 output "current_version" {
