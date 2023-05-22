@@ -1,5 +1,8 @@
 name: Terraform validation
-on: [push]
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
 
 jobs:
   terraform:
