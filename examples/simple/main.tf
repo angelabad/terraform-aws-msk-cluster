@@ -21,4 +21,6 @@ module "simple" {
   number_of_nodes = length(data.aws_subnets.default.ids)
   instance_type   = "kafka.t3.small"
   kafka_version   = "2.6.2"
+
+  client_authentication_unauthenticated_enabled = true
 }
