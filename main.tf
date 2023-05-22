@@ -3,14 +3,6 @@ locals {
   enable_logs       = var.s3_logs_bucket != "" || var.cloudwatch_logs_group != "" || var.firehose_logs_delivery_stream != "" ? ["true"] : []
 }
 
-terraform {
-  required_version = ">= 0.15"
-  required_providers {
-    aws    = ">= 4.16"
-    random = ">= 2.1"
-  }
-}
-
 data "aws_subnet" "this" {
   id = var.client_subnets[0]
 }
