@@ -1,5 +1,4 @@
 name: Terraform validation
-
 on: [push]
 
 jobs:
