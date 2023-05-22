@@ -40,7 +40,7 @@ output "current_version" {
 
 output "encryption_at_rest_kms_key_arn" {
   description = "The ARN of the KMS key used for encryption at rest of the broker data volumes."
-  value       = aws_msk_cluster.this.encryption_info.0.encryption_at_rest_kms_key_arn
+  value       = aws_msk_cluster.this.encryption_info[0].encryption_at_rest_kms_key_arn
 }
 
 output "zookeeper_connect_string" {
