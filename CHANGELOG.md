@@ -1,4 +1,19 @@
 
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.5.1...0.5.2) (2023-09-17)
+
+### Bug Fixes
+
+* Use new format for required providers
+* Add client_authentication_unauthenticated_enabled to simple example
+* Use square brackets for item access
+* Resolve recreation of provisioned volume throughput
+
+### Features
+
+* Add new output for cluster_name
+
+
 <a name="v0.5.1"></a>
 ## [v0.5.1](https://github.com/angelabad/terraform-aws-msk-cluster/compare/v0.5.0...v0.5.1) (2023-05-20)
 
