@@ -1,3 +1,7 @@
+output "cluster_name" {
+  description = "Msk cluster name"
+  value       = aws_msk_cluster.this.cluster_name
+}
 output "default_security_group" {
   description = "Msk cluster default security group id."
   value       = aws_security_group.this.id
