@@ -123,12 +123,9 @@ resource "aws_msk_cluster" "this" {
         volume_size = var.volume_size
 
 
-       dynamic "provisioned_throughput" {
-          for_each = var.provisioned_volume_throughput[*]
-          content {
-            enabled           = true
-            volume_throughput = var.provisioned_volume_throughput
-          }
+        provisioned_throughput {
+          enabled           = var.provisioned_volume_throughput == null ? false : true
+          volume_throughput = var.provisioned_volume_throughput
         }
       }
     }
