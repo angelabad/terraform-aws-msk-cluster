@@ -27,8 +27,8 @@ resource "aws_kms_key" "msk-test" {
 }
 
 resource "aws_secretsmanager_secret" "msk-test" {
-  name       = "AmazonMSK_example"
-  kms_key_id = aws_kms_key.msk-test.key_id
+  name_prefix = "AmazonMSK_example"
+  kms_key_id  = aws_kms_key.msk-test.key_id
 }
 
 resource "aws_secretsmanager_secret_version" "msk-test" {
